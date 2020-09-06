@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'materials',
     'frontend',
     'rest_framework',
+    'django_rest_passwordreset',
     'knox'
 ]
 

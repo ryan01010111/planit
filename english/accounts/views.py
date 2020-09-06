@@ -1,7 +1,9 @@
+from django.dispatch import receiver
 from rest_framework import generics, permissions
 from rest_framework.response import Response
 from knox.models import AuthToken
 from .serializers import UserSerializer, RegisterSerializer, LoginSerializer
+from django_rest_passwordreset.signals import reset_password_token_created
 from materials.models import LessonPlan
 
 # set free lesson plan
@@ -52,4 +54,9 @@ class PurchasedMaterialsAPI(generics.RetrieveAPIView):
         purchased_materials = list(user.purchased_plans.all().values_list("pk", flat=True))
 
         return Response({ "purchased": purchased_materials })
+
+@receiver(reset_password_token_created)
+def password_reset_token_created(sender, instance, reset_password_token, *args, **kwargs):
+
+    print(reset_password_token.user.email, reset_password_token.key)
 
