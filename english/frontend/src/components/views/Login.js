@@ -25,7 +25,7 @@ export default class Login extends Component {
         e.preventDefault();
         const { username, password } = this.state.values;
         const success = await auth.login(username, password);
-        this.setState({ 
+        this.setState({
             values: {
                 ...this.state.values,
                 username: '',

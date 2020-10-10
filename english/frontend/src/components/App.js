@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { HashRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import ProtectedRoute from './ProtectedRoute';
 import auth from './auth';
 import Loading from './views/Loading';
@@ -7,6 +7,7 @@ import Header from './layout/Header';
 import Login from './views/Login';
 import Logout from './views/Logout';
 import Register from './views/Register';
+import ForgotPassword from './views/ForgotPassword';
 import About from './views/About';
 import Dashboard from './views/Dashboard';
 
@@ -28,18 +29,13 @@ export default class App extends Component {
                         ? <Loading />
                         : (
                             <Switch>
-                                <Route path="/login">
-                                    <Login />
-                                </Route>
+                                <Route path="/login" component={Login} />
                                 <ProtectedRoute path="/logout"
                                     component={Logout}
                                 />
-                                <Route path="/register">
-                                    <Register />
-                                </Route>
-                                <Route path="/about">
-                                    <About />
-                                </Route>
+                                <Route path="/register" component={Register} />
+                                <Route path="/forgot_password" component={ForgotPassword} />
+                                <Route path="/about" component={About} />
                                 <ProtectedRoute path="/"
                                     component={Dashboard}
                                 />

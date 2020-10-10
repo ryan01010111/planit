@@ -12,7 +12,7 @@ class Auth {
     }
 
     headerTemplate = () => {
-        let header = {'Content-Type': 'application/json'}
+        let header = { 'Content-Type': 'application/json' }
         if (this.state.token) {
             header = {
                 ...header,
@@ -34,7 +34,8 @@ class Auth {
         } else {
             const data = await res.json();
             localStorage.setItem('token', data.token)
-            this.state = {...this.state,
+            this.state = {
+                ...this.state,
                 isAuthenticated: true,
                 token: data.token,
                 user: data.user
@@ -55,7 +56,8 @@ class Auth {
         } else {
             const data = await res.json();
             localStorage.setItem('token', data.token);
-            this.state = {...this.state,
+            this.state = {
+                ...this.state,
                 isAuthenticated: true,
                 token: data.token,
                 user: data.user
@@ -104,7 +106,7 @@ class Auth {
                 this.state = {
                     ...this.state,
                     isAuthenticated:
-                    true,
+                        true,
                     user: data
                 }
                 return true;
@@ -114,6 +116,16 @@ class Auth {
             this.state.isAuthenticated = false;
             return false;
         }
+    }
+
+    requestPasswordReset = async email => {
+        const res = await fetch('/api/auth/password_reset/', {
+            method: 'POST',
+            headers: this.headerTemplate(),
+            body: JSON.stringify({ email })
+        });
+        const data = await res.json();
+        console.log({ data });
     }
 }
 
