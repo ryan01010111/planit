@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import auth from '../auth';
+import Auth from '../auth';
 import Loading from './Loading';
 import OrdersTable from './OrdersTable';
 
@@ -10,7 +10,7 @@ const Account = () => {
         async function fetchData() {
             const res = await fetch('/api/my_orders', {
                 method: 'GET',
-                headers: auth.headerTemplate()
+                headers: Auth.headerTemplate()
             })
             const data = await res.json();
             setOrders(data);

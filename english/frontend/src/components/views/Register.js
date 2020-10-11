@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect, Link } from 'react-router-dom';
-import auth from '../auth';
+import Auth from '../auth';
 import TextInput from './TextInput';
 
 export default class Register extends Component {
@@ -39,12 +39,12 @@ export default class Register extends Component {
         } else if (password !== passwordConf) {
             errorMsg = "Those passwords don't match";
         } else {
-            const success = await auth.register(username, email, password);
+            const success = await Auth.register(username, email, password);
             errorMsg = !success
                 ? 'That username and/or email address is already registered'
                 : null
         }
-        this.setState({ 
+        this.setState({
             values: {
                 ...this.state.values,
                 username: '',
@@ -57,7 +57,7 @@ export default class Register extends Component {
     }
 
     render() {
-        if (auth.isAuthenticated()) {
+        if (Auth.isAuthenticated()) {
             return <Redirect to="/intro" />
         }
 

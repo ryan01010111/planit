@@ -7,7 +7,7 @@
 body {
   min-height: 100vh;
   color: #444;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; }
 
 #view-header,
 .item-title,
@@ -16,7 +16,7 @@ body {
 #register-container > h1,
 #logout-container > h1,
 #about-container > h1 {
-  font-family: 'Ubuntu', sans-serif; }
+  font-family: "Ubuntu", sans-serif; }
 
 li {
   list-style-type: none; }
@@ -25,14 +25,18 @@ a {
   text-decoration: none;
   color: #83d6fa; }
 
-#login-container input, #register-container input {
+#login-container input,
+#forgot-password-container input,
+#password-reset-container input, #register-container input {
   display: block;
   font-size: 1.3em;
   padding: 12px 8px;
-  margin: 20px auto;
+  margin: 20px auto 0 auto;
   border: none;
   box-shadow: 0 0 2px 1px #ccc; }
-  #login-container input:focus, #register-container input:focus {
+  #login-container input:focus,
+  #forgot-password-container input:focus,
+  #password-reset-container input:focus, #register-container input:focus {
     outline: #83d6fa solid 3px; }
 
 .hide {
@@ -124,31 +128,63 @@ main {
   100% {
     border-radius: 4%; } }
 
-#login-container, #register-container, #about-container {
+#login-container,
+#register-container,
+#about-container {
   width: 40vw;
   margin: 0 auto 12px auto;
   padding: 20px;
   border-radius: 12px;
   box-shadow: 4px 4px 10px #777; }
 
-#login-container {
+#login-container,
+#forgot-password-container,
+#password-reset-container {
   animation: container-warp 1.5s ease; }
-  #login-container h1 {
+  #login-container h1,
+  #forgot-password-container h1,
+  #password-reset-container h1 {
     margin: 12px; }
-  #login-container h4 {
+  #login-container h4,
+  #forgot-password-container h4,
+  #password-reset-container h4 {
     margin: 34px 0; }
-  #login-container button {
+  #login-container form,
+  #forgot-password-container form,
+  #password-reset-container form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: max-content;
+    margin: 0 auto; }
+  #login-container #forgot-password-link,
+  #forgot-password-container #forgot-password-link,
+  #password-reset-container #forgot-password-link {
+    display: block;
+    width: fit-content;
+    margin: 4px 0;
+    font-size: 0.8em;
+    text-align-last: left; }
+  #login-container button,
+  #forgot-password-container button,
+  #password-reset-container button {
     padding: 10px 20px;
-    margin: 20px 0;
+    margin: 20px auto;
     background-color: #48faaa;
     box-shadow: 0 0 1px 1px #ccc; }
-    #login-container button:disabled {
+    #login-container button:disabled,
+    #forgot-password-container button:disabled,
+    #password-reset-container button:disabled {
       color: #777;
       background-color: #efefef; }
-    #login-container button:not([disabled]):hover {
+    #login-container button:not([disabled]):hover,
+    #forgot-password-container button:not([disabled]):hover,
+    #password-reset-container button:not([disabled]):hover {
       transform: translateY(-2px);
       box-shadow: 2px 2px 4px #777; }
-  #login-container p {
+  #login-container p,
+  #forgot-password-container p,
+  #password-reset-container p {
     margin: 14px 34px 0 34px;
     padding: 14px;
     border-top: 1px solid #ccc; }
@@ -410,9 +446,13 @@ main {
   #filter-content::-webkit-scrollbar {
     display: none; }
 
-#filter-levels, #filter-age-groups, #filter-categories {
+#filter-levels,
+#filter-age-groups,
+#filter-categories {
   margin: 0 0 8px 0; }
-  #filter-levels p, #filter-age-groups p, #filter-categories p {
+  #filter-levels p,
+  #filter-age-groups p,
+  #filter-categories p {
     margin: 0 0 10px 0;
     padding: 8px 0;
     border-bottom: 2px solid #ccc; }
@@ -567,13 +607,15 @@ main {
   #close-materials-info-btn:hover {
     background-color: #efefef; }
 
-#loadMaterialsBtn, #buyMaterialsBtn {
+#loadMaterialsBtn,
+#buyMaterialsBtn {
   margin: 34px 0 0 0;
   padding: 8px 14px;
   font-size: 1.4em;
   background-color: #83d6fa;
   box-shadow: 1px 1px 2px #444; }
-  #loadMaterialsBtn:hover, #buyMaterialsBtn:hover {
+  #loadMaterialsBtn:hover,
+  #buyMaterialsBtn:hover {
     background-color: #efefef; }
 
 .react-pdf__Document {
@@ -608,12 +650,12 @@ main {
       background-color: #ccc; }
 
 #zoom-in::before {
-  content: '+';
+  content: "+";
   top: 7px;
   left: 12px; }
 
 #zoom-out::before {
-  content: '\2013';
+  content: "\2013";
   top: 5px;
   left: 13px; }
 
@@ -693,11 +735,13 @@ main {
   #my-orders thead {
     background-color: #efefef;
     border-bottom: 2px solid #83d6fa; }
-  #my-orders th, #my-orders td {
+  #my-orders th,
+  #my-orders td {
     padding: 12px; }
   #my-orders tr:not(:last-child) {
     border-bottom: 2px solid #ccc; }
-  #my-orders th:nth-child(4), #my-orders td:nth-child(4) {
+  #my-orders th:nth-child(4),
+  #my-orders td:nth-child(4) {
     text-align: right; }
   #my-orders td:last-child {
     box-shadow: inset 0 0 0 4px #fff; }
@@ -720,9 +764,11 @@ main {
   border-collapse: collapse; }
   #order-info thead {
     border-bottom: 2px solid #83d6fa; }
-  #order-info th, #order-info td {
+  #order-info th,
+  #order-info td {
     padding: 4px 8px; }
-  #order-info th:nth-child(2), #order-info td:nth-child(2) {
+  #order-info th:nth-child(2),
+  #order-info td:nth-child(2) {
     text-align: right; }
 
 /* Stripe checkout form */
@@ -848,7 +894,8 @@ main {
     margin: 0 10px; }
   #loading-animation {
     margin: 20vh 10% 0 10%; }
-  #login-container, #about-container {
+  #login-container,
+  #about-container {
     width: 90vw; }
   #register-container {
     width: 90vw; }

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom'
-import auth from '../auth';
+import Auth from '../auth';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 
 const CheckoutForm = ({ itemID, updatePurchased }) => {
@@ -17,7 +17,7 @@ const CheckoutForm = ({ itemID, updatePurchased }) => {
         window
             .fetch(`/api/create_payment`, {
                 method: "POST",
-                headers: auth.headerTemplate(),
+                headers: Auth.headerTemplate(),
                 body: JSON.stringify({ itemID })
             })
             .then(res => {
@@ -26,7 +26,7 @@ const CheckoutForm = ({ itemID, updatePurchased }) => {
             .then(data => {
                 setClientSecret(data.clientSecret);
             });
-        }, []);
+    }, []);
 
     const cardStyle = {
         style: {
@@ -56,7 +56,7 @@ const CheckoutForm = ({ itemID, updatePurchased }) => {
     const handleSubmit = async ev => {
         ev.preventDefault();
         setProcessing(true);
-        
+
         const payload = await stripe.confirmCardPayment(clientSecret, {
             payment_method: {
                 card: elements.getElement(CardElement),
@@ -65,7 +65,7 @@ const CheckoutForm = ({ itemID, updatePurchased }) => {
                 }
             }
         });
-    
+
         if (payload.error) {
             setError(`Payment failed ${payload.error.message}`);
             setProcessing(false);
@@ -73,7 +73,7 @@ const CheckoutForm = ({ itemID, updatePurchased }) => {
             setError(null);
             setProcessing(false);
             setSucceeded(true);
-            setTimeout(() => {updatePurchased()}, 5000);
+            setTimeout(() => { updatePurchased() }, 5000);
         }
     };
 
@@ -88,8 +88,8 @@ const CheckoutForm = ({ itemID, updatePurchased }) => {
                     {processing ? (
                         <div className="spinner" id="spinner"></div>
                     ) : (
-                        "Pay"
-                    )}
+                            "Pay"
+                        )}
                 </span>
             </button>
             {/* Show any error that happens when processing the payment */}

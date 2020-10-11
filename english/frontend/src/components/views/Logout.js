@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom';
-import auth from '../auth';
+import Auth from '../auth';
 
 const Logout = () => {
     useEffect(() => {
-        auth.logout();
+        Auth.logout();
     }, [])
 
     return (

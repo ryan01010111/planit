@@ -119,13 +119,31 @@ class Auth {
     }
 
     requestPasswordReset = async email => {
-        const res = await fetch('/api/auth/password_reset/', {
-            method: 'POST',
-            headers: this.headerTemplate(),
-            body: JSON.stringify({ email })
-        });
-        const data = await res.json();
-        console.log({ data });
+        try {
+            const res = await fetch('/api/auth/password_reset/', {
+                method: 'POST',
+                headers: this.headerTemplate(),
+                body: JSON.stringify({ email })
+            });
+            const success = res.status === 200;
+            return { success };
+        } catch (e) {
+            return { success: false };
+        }
+    }
+
+    resetPassword = async (token, password) => {
+        try {
+            const res = await fetch('/api/auth/password_reset/confirm/', {
+                method: 'POST',
+                headers: this.headerTemplate(),
+                body: JSON.stringify({ token, password })
+            });
+            const success = res.status === 200;
+            return { success };
+        } catch (e) {
+            return { success: false };
+        }
     }
 }
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import auth from '../auth';
+import Auth from '../auth';
 
 function Header() {
     const path = useLocation().pathname;
@@ -12,13 +12,13 @@ function Header() {
                 alt="logo"
             />
             <nav>
-                {!auth.isAuthenticated()
+                {!Auth.isAuthenticated()
                     ? (
                         <ul>
                             {path !== '/login' &&
                                 <li id="nav-login"><Link to="/login">Login</Link></li>
                             }
-                            {path !== '/register' &&
+                            {!['/register', '/forgot_password', '/password_reset'].includes(path) &&
                                 <li id="nav-register"><Link to="/register">Register</Link></li>
                             }
                             {path !== '/about' &&
@@ -27,7 +27,7 @@ function Header() {
                         </ul>
                     ) : (
                         <ul>
-                            {auth.isAuthenticated() && path !== '/logout' &&
+                            {Auth.isAuthenticated() && path !== '/logout' &&
                                 <li id="nav-logout"><Link to="/logout">Logout</Link></li>
                             }
                         </ul>
