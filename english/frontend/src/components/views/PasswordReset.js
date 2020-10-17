@@ -14,8 +14,8 @@ const PasswordReset = () => {
     const handleSubmit = async e => {
         e.preventDefault();
         const passwordRegex = /^[a-z0-9-_!@#$%&*?]+$/i;
-        if (password.length < 6 || !passwordRegex.test(password)) {
-            return setError('Your password should be at least 6 characters long, and contain only letters, numbers, and/or the following: _!@#$%&*');
+        if (password.length < 8 || !passwordRegex.test(password)) {
+            return setError('Your password should be at least 8 characters long, and contain only letters, numbers, and/or the following: _!@#$%&*');
         } else if (!password || !passwordConfirm) {
             return setError('Both fields are required');
         } else if (password !== passwordConfirm) {
@@ -27,7 +27,7 @@ const PasswordReset = () => {
         if (res.success) {
             setSuccess(true);
         } else {
-            setError('Something went wrong. Please try again.');
+            setError('Something went wrong. Please try again. Hint: Passwords that are too common, or too similar to your username are not accepted.');
         }
         setLoading(false);
     }
