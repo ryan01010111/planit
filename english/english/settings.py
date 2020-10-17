@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'materials',
     'frontend',
     'rest_framework',
+    'django_rest_passwordreset',
     'knox'
 ]
 
@@ -130,3 +131,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+DJANGO_REST_PASSWORDRESET_NO_INFORMATION_LEAKAGE = True  # password reset package
+
+EMAIL_HOST = 'smtp.ethereal.email'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+EMAIL_HOST_USER = os.environ.get('EMAIL_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')

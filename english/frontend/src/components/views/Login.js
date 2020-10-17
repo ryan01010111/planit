@@ -1,7 +1,7 @@
 import React, { Component, useContext } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import TextInput from './TextInput';
-import auth from '../auth';
+import Auth from '../auth';
 
 export default class Login extends Component {
     state = {
@@ -24,8 +24,8 @@ export default class Login extends Component {
     onSubmit = async (e) => {
         e.preventDefault();
         const { username, password } = this.state.values;
-        const success = await auth.login(username, password);
-        this.setState({ 
+        const success = await Auth.login(username, password);
+        this.setState({
             values: {
                 ...this.state.values,
                 username: '',
@@ -36,7 +36,7 @@ export default class Login extends Component {
     }
 
     render() {
-        if (auth.isAuthenticated()) {
+        if (Auth.isAuthenticated()) {
             return <Redirect to="/" />
         }
 
@@ -63,6 +63,7 @@ export default class Login extends Component {
                         value={password}
                         onChange={this.handleChange}
                     />
+                    <Link id="forgot-password-link" to="/forgot_password">I forgot my password.</Link>
                     <button
                         type="submit"
                         disabled={!username || !password}
