@@ -25,12 +25,12 @@
     "@babel/preset-env": "^7.9.6",
     "@babel/preset-react": "^7.9.4",
     "@babel/runtime": "^7.9.6",
-    "babel-loader": "^8.1.0",
+    "babel-loader": "^8.3.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "copy-webpack-plugin": "^6.0.1",
     "node-sass": "^4.14.1",
-    "webpack": "^4.43.0",
-    "webpack-cli": "^3.3.11"
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1"
   },
   "dependencies": {
     "@stripe/react-stripe-js": "^1.1.2",
@@ -38,7 +38,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-pdf": "^4.1.0",
+    "react-pdf": "^6.2.1",
     "react-router-dom": "^5.2.0"
   }
 }
